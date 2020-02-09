@@ -17,6 +17,7 @@ export class DataManagerScene extends Phaser.Scene {
   preload() {
     this.data.events.on('changedata', (...data) => this.onChangeData(data));
     this.data.events.on('setdata', (...data) => this.onChangeData(data));
+    // or this.scene.get('data-manager-scene').events.on('changedata', (...data) => this.onChangeData(data));
     this.data.set('count', 0);
     this.data.set('bonus', 5);
   }
@@ -29,7 +30,7 @@ export class DataManagerScene extends Phaser.Scene {
     this.buttonRect = this.add.rectangle(20, 100, 120, 80, 0x0000a2);
     this.buttonRect.setInteractive();
     // remember to use closure, bind this, or pass 'this' as 3rd param
-    this.buttonRect.on('pointerup', (pointer) => this.onButtonClick(pointer)); 
+    this.buttonRect.on('pointerup', (pointer, gameObject) => this.onButtonClick(pointer, gameObject)); 
   }
 
   update(timer, delta) {
@@ -38,7 +39,7 @@ export class DataManagerScene extends Phaser.Scene {
     // this.countText.setData; // data manager
   }
 
-  onButtonClick(pointer) {
+  onButtonClick(pointer, gameObject) {
     this.buttonRect.fillColor = 0x0000b2;
     const lastCount = this.data.get('count') | 0;
     const lastBonus = this.data.get('bonus') | 0;

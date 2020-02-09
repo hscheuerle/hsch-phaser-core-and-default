@@ -1,5 +1,7 @@
 import * as Phaser from 'phaser';
-import { DataManagerScene } from './data-manager.scene';
+// import { DataManagerScene } from './data-manager.scene';
+import { DebugScene } from './debug.scene';
+import { MainScene } from './main.scene';
 
 const gameConfig = {
   height: 700,
@@ -7,7 +9,7 @@ const gameConfig = {
   pixelArt: true,
   backgroundColor: '#333333',
   parent: 'app',
-  scene: [ DataManagerScene ],
+  scene: [ MainScene, DebugScene ],
 };
 
 export class ExampleGame extends Phaser.Game {
